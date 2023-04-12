@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "minVersion": "0.7",
+  "package": "com.example.examplemod.mixins",
+  "refmap": "mixins.examplemod.refmap.json",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "renderHandMixin",
+    "sendMessageMixin"
+  ]
+}
