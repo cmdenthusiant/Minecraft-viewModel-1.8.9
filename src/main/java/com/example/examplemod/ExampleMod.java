@@ -38,19 +38,19 @@ public class ExampleMod
     {
         MinecraftForge.EVENT_BUS.register(this);
         try {
-			File f = new File("viewModelConfig.txt");
-			String config;
-			if(!f.exists()) {
-				f.createNewFile();
-				config = this.createDefaultConfig();
-			}
-			FileInputStream file = new FileInputStream("viewModelConfig.txt");
-			config = IOUtils.toString(file);
-			file.close();
-			this.readConfig(config);
-		} catch(Exception e) {
-			e.printStackTrace();
+		File f = new File("viewModelConfig.txt");
+		String config;
+		if(!f.exists()) {
+			f.createNewFile();
+			config = this.createDefaultConfig();
 		}
+		FileInputStream file = new FileInputStream("viewModelConfig.txt");
+		config = IOUtils.toString(file);
+		file.close();
+		this.readConfig(config);
+	} catch(Exception e) {
+		e.printStackTrace();
+	}
     }
     public static boolean onCommand(String msg) {
     	if(!msg.startsWith("vm! ")) return false;
@@ -77,30 +77,30 @@ public class ExampleMod
     }
     private void readConfig(String config) {
     	String[] args = config.split(",");
-		double x,y,z;
-		try {
-	    	x = Double.valueOf(args[0]);
-	    	y = Double.valueOf(args[1]);
-	   		z = Double.valueOf(args[2]);
-	   	} catch(Exception e) {
-	   		this.readConfig(this.createDefaultConfig());
-	   		return;
-	   	}
+	double x,y,z;
+	try {
+		x = Double.valueOf(args[0]);
+		y = Double.valueOf(args[1]);
+	   	z = Double.valueOf(args[2]);
+	} catch(Exception e) {
+	   	this.readConfig(this.createDefaultConfig());
+	   	return;
+	}
     	offsetX = x;
-	    offsetY = y;
-	   	offsetZ = z;
+	offsetY = y;
+	offsetZ = z;
     }
     
     private static void writeConfig() {
     	String config = offsetX+","+offsetY+","+offsetZ;
     	try {
-			FileWriter fileW = new FileWriter("viewModelConfig.txt");
-			fileW.write(config);
-			fileW.flush();
-			fileW.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		FileWriter fileW = new FileWriter("viewModelConfig.txt");
+		fileW.write(config);
+		fileW.flush();
+		fileW.close();
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
     }
     
     private String createDefaultConfig() {
